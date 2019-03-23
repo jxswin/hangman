@@ -69,11 +69,14 @@ def click():
     global i
     if(i < 12):
         ip=tBox.get()
-        tBox.delete(0,10)
-        check(ip)
-        v.set(convert(list2))
-        print(list2)
-        check_finish()
+        if (len(ip)==0):
+            messagebox.showinfo("OOPS","EMPTY TEXTBOX")
+        else:
+            tBox.delete(0,10)
+            check(ip)
+            v.set(convert(list2))
+            print(list2)
+            check_finish()
     else:
         change()
     
@@ -89,10 +92,13 @@ def check(ip):
     else:
         i+=1
         imag()
-        if ip in list3:
-            messagebox.showinfo("OOPS","LETTER REPEATED")
+        if (i==12):
+            messagebox.showinfo("OOPS","The correct word is  " +convert(list3))
         else:
-            messagebox.showinfo("OOPS","LETTER NOT IN WORD")
+            if ip in list3:
+                messagebox.showinfo("OOPS","LETTER REPEATED")
+            else:
+                messagebox.showinfo("OOPS","LETTER NOT IN WORD")
     
             #flag increment
 def check_finish():
@@ -105,7 +111,7 @@ def check_finish():
 def change():
     global i
     i=0
-    tBox.delete(0,1)
+    tBox.delete(0,3)
     new_ip=get_word()
     print(new_ip)
     mkunder(new_ip)
@@ -113,6 +119,7 @@ def change():
     v.set(convert(list2))
     mkset(new_ip)
     print(list3)
+    list4.clear()
     imag()
         
       
